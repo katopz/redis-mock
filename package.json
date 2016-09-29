@@ -15,7 +15,8 @@
     "sinon": "~1.7.3"
   },
   "scripts": {
-    "test": "make test"
+    "make:test": "make test",
+    "test": "mocha ./test/*.js --timeout=8000"
   },
   "contributors": [
     "lahabana (Charly Molter) <charly.molter@gmail.com>"
