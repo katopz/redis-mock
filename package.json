@@ -9,16 +9,20 @@
     "url": "https://github.com/faeldt/redis-mock.git"
   },
   "devDependencies": {
-    "should": "4.4.2",
+    "memdown": "^1.2.2",
     "mocha": "*",
     "redis": "*",
+    "should": "4.4.2",
     "sinon": "~1.7.3"
   },
   "scripts": {
     "make:test": "make test",
-    "test": "mocha ./test/*.js --timeout=8000"
+    "test": "mocha ./test/redis-mock.test.js --timeout=8000"
   },
   "contributors": [
     "lahabana (Charly Molter) <charly.molter@gmail.com>"
-  ]
+  ],
+  "dependencies": {
+    "levelup": "^1.3.2"
+  }
 }
