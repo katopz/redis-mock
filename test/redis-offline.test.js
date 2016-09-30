@@ -1,30 +1,30 @@
-var redismock = require("../"),
+var redisoffline = require("../"),
   should = require("should"),
   events = require("events");
 
 
 if (process.env['VALID_TESTS']) {
-  redismock = require('redis');
+  redisoffline = require('redis');
 }
 
 // Clean the db after each test
 afterEach(function (done) {
-  r = redismock.createClient();
+  r = redisoffline.createClient();
   r.flushdb(function () {
     r.end();
     done();
   });
 });
 
-describe("redis-mock", function () {
+describe("redis-offline", function () {
 
   it("should create an instance of RedisClient which inherits from EventEmitter", function () {
 
-    should.exist(redismock.createClient);
+    should.exist(redisoffline.createClient);
 
-    var r = redismock.createClient();
+    var r = redisoffline.createClient();
     should.exist(r);
-    r.should.be.an.instanceof(redismock.RedisClient);
+    r.should.be.an.instanceof(redisoffline.RedisClient);
     r.should.be.an.instanceof(events.EventEmitter);
 
     r.end();
@@ -33,7 +33,7 @@ describe("redis-mock", function () {
 
   it("should emit ready and connected when creating client", function (done) {
 
-    var r = redismock.createClient();
+    var r = redisoffline.createClient();
 
     var didEmitOther = true;
     var didOtherPassed = false
@@ -69,7 +69,7 @@ describe("redis-mock", function () {
   /** This test doesn't seem to work on node_redis
    it("should have function end() that emits event 'end'", function (done) {
 
-        var r = redismock.createClient();
+        var r = redisoffline.createClient();
 
         r.on("end", function () {
 
@@ -92,7 +92,7 @@ describe("redis-error-mock", function () {
 			return;
 		}
 		
-        var redis = new redismock.RedisErrorMock();
+        var redis = new redisoffline.RedisErrorMock();
 
         var r = redis.createClient();
         should.exist(r);
